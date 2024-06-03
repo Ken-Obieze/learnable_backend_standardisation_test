@@ -3,8 +3,16 @@ const AuthService = require('../services/authService');
 class AuthController {
   static async register(req, res) {
     const { email } = req.body;
-    const apiKey = await AuthService.register(email);
-    res.status(201).json({ message: 'Kryptonian registered, check your email for OTP', apiKey });
+    try {
+      const apiKey = await AuthService.register(email);
+      res.status(201).json({ message: 'Kryptonian registered, check your email for OTP', apiKey });
+    } catch (error) {
+      if (error.message === 'Email already registered') {
+        res.status(400).json({ message: error.message });
+      } else {
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    }
   }
 
   static async confirmEmail(req, res) {
@@ -17,13 +25,13 @@ class AuthController {
     }
   }
 
-  static async login(req, res) {
+  static async initiateLogin(req, res) {
     const { email } = req.body;
-    const loginInitiated = await AuthService.initiateLogin(email);
-    if (loginInitiated) {
+    const initiated = await AuthService.initiateLogin(email);
+    if (initiated) {
       res.status(200).json({ message: 'OTP sent to your email' });
     } else {
-      res.status(400).json({ message: 'Email not confirmed or user does not exist' });
+      res.status(400).json({ message: 'Invalid email or unconfirmed account' });
     }
   }
 

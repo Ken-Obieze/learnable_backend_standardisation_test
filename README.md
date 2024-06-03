@@ -80,7 +80,7 @@ npm start
 
 ### API Endpoints
 Kryptonian Registration and Authentication
-Register a Kryptonian
+**Register a Kryptonian**
 * Endpoint: POST api/v1/auth/register
 * Description: Register a new Kryptonian and send a confirmation email with an OTP.
 * Request Body:
@@ -120,6 +120,25 @@ Register a Kryptonian
 ```
 **Login**
 * Endpoint: POST api/v1/auth/login
+* Description: Log in using the OTP sent via email.
+* Request Body:
+```json
+
+{
+  "email": "example@krypton.com",
+  "otp": "123456"
+}
+```
+* Response:
+```json
+
+{
+  "message": "Logged in successfully",
+  "token": "jwt_token"
+}
+```
+**Verify Login**
+* Endpoint: POST api/v1/auth/verify-login
 * Description: Log in using the OTP sent via email.
 * Request Body:
 ```json

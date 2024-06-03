@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use('api/v1/auth', authRoutes);
-app.use('api/v1/files', fileRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/files', fileRoutes);
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ message: err.message });
