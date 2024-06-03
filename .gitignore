@@ -1,0 +1,11 @@
+# Dependency directory
+kryptoniteapp/node_modules/
+
+# Package lock
+kryptoniteapp/package-lock.json
+
+# Environment variables
+kryptoniteapp/.env
+
+# IDE/Edition specific files
+.vscode/
