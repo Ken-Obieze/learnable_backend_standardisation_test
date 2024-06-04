@@ -242,10 +242,7 @@ The application requires the following environment variables:
 * PORT: The port on which the server will run.
 * MONGO_URI: The MongoDB connection string.
 * JWT_SECRET: The secret key for JWT token generation.
-* DB_NAME=xxxx
-* JWT_SECRET=xxxx
-* EMAIL_USERNAME=xxxx
-* EMAIL_API_KEY=xxxx
-* REDIS_URL=xxxx
-* REDIS_PASSWORD=xxxx
-* REDIS_PORT=xxxx
+* DB_NAME: Collection Name.
+* JWT_SECRET: A secrete for JWT.
+* EMAIL_USERNAME: Host email address.
+* EMAIL_API_KEY: Application password or password to the email.
