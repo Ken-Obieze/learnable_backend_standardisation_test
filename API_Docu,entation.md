@@ -2,7 +2,7 @@
 
 ## Base URL
 ```
-http://localhost:3000
+https://kryptoniteapp-dfm6.onrender.com
 ```
 ## Authentication and User Management
 Register a Kryptonian

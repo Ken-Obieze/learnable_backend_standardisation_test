@@ -2,7 +2,7 @@
 
 ## Overview
 
-KryptoniteApp is a futuristic application designed for the Kryptonian civilization. It includes a robust authentication system with two-factor authentication (2FA) and a file upload service that handles image files. The application leverages voice and biometric authentication details, and uses the ElasticEmail service for sending OTPs.
+KryptoniteApp is a futuristic application designed for the Kryptonian civilization. It includes a robust authentication system with two-factor authentication (2FA) and a file upload service that handles image files. The application leverages voice and biometric authentication details, and uses the Email service for sending OTPs.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ KryptoniteApp is a futuristic application designed for the Kryptonian civilizati
   - [File Upload Service](#file-upload-service)
   - [Accessing Images](#accessing-images)
 - [Environment Variables](#environment-variables)
-- [License](#license)
+
 
 ## Features
 
@@ -30,7 +30,6 @@ KryptoniteApp is a futuristic application designed for the Kryptonian civilizati
 
 - Node.js
 - MongoDB
-- Redis (optional, for OTP storage)
 - cors
 - dotenv
 - express
@@ -40,12 +39,13 @@ KryptoniteApp is a futuristic application designed for the Kryptonian civilizati
 - mongoose
 - multer
 - nodemailer
-- redis
+- node-cache
 - supertest
 
 ### Installation
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/Ken-Obieze/learnable_backend_standardisation_test.git
    cd kryptoniteapp
@@ -58,6 +58,7 @@ npm install
 ```
 
 3. **Set up environment variables**:
+
 Create a .env file in the root directory with the following content:
 
 ```env
@@ -67,9 +68,6 @@ DB_NAME=xxxx
 JWT_SECRET=xxxx
 EMAIL_USERNAME=xxxx
 EMAIL_API_KEY=xxxx
-REDIS_URL=xxxx
-REDIS_PASSWORD=xxxx
-REDIS_PORT=xxxx
 ```
 
 4. **Start the server**:
@@ -79,7 +77,13 @@ npm start
 ```
 
 ### API Endpoints
+
 Kryptonian Registration and Authentication
+Base URL
+```
+https://kryptoniteapp-dfm6.onrender.com
+```
+
 **Register a Kryptonian**
 * Endpoint: POST api/v1/auth/register
 * Description: Register a new Kryptonian and send a confirmation email with an OTP.
@@ -89,22 +93,21 @@ Kryptonian Registration and Authentication
   "email": "example@krypton.com"
 }
 ```
+
 * Response:
 ```json
-
 {
   "message": "Kryptonian registered, check your email for OTP",
   "apiKey": "generated_api_key"
 }
-
 ```
 
 **Confirm Email**
+
 * Endpoint: POST api/v1/auth/confirm-email
 * Description: Confirm the email using the OTP sent.
 * Request Body:
 ```json
-
 {
   "email": "example@krypton.com",
   "otp": "123456"
@@ -113,44 +116,45 @@ Kryptonian Registration and Authentication
 
 * Response:
 ```json
-
 {
   "message": "Email confirmed, you can log in now"
 }
 ```
+
 **Login**
+
 * Endpoint: POST api/v1/auth/login
 * Description: Log in using the OTP sent via email.
 * Request Body:
 ```json
-
 {
   "email": "example@krypton.com",
   "otp": "123456"
 }
 ```
+
 * Response:
 ```json
-
 {
   "message": "Logged in successfully",
   "token": "jwt_token"
 }
 ```
+
 **Verify Login**
+
 * Endpoint: POST api/v1/auth/verify-login
 * Description: Log in using the OTP sent via email.
 * Request Body:
 ```json
-
 {
   "email": "example@krypton.com",
   "otp": "123456"
 }
 ```
+
 * Response:
 ```json
-
 {
   "message": "Logged in successfully",
   "token": "jwt_token"
@@ -158,6 +162,7 @@ Kryptonian Registration and Authentication
 ```
 
 **File Upload Service**
+
 Upload File
 * Endpoint: POST api/v1/files/upload
 * Description: Upload an image file.
@@ -187,12 +192,12 @@ file: (select an image file)
 ```
 
 **Accessing Images**
+
 Get File by ID
 * Endpoint: GET api/v1/files/:id
 * Description: Retrieve a specific image file by its ID.
 * Response:
 ```json
-
 {
   "file": {
     "_id": "file_id",
@@ -203,12 +208,13 @@ Get File by ID
   }
 }
 ```
+
 Get All Files
+
 * Endpoint: GET api/v1/files
 * Description: Retrieve all image files.
 * Response:
 ```json
-
 {
   "files": [
     {
@@ -230,6 +236,7 @@ Get All Files
 ```
 
 ### Environment Variables
+
 The application requires the following environment variables:
 
 * PORT: The port on which the server will run.
