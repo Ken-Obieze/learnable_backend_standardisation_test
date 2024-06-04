@@ -129,7 +129,6 @@ https://kryptoniteapp-dfm6.onrender.com
 ```json
 {
   "email": "example@krypton.com",
-  "otp": "123456"
 }
 ```
 

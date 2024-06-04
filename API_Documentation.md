@@ -48,7 +48,6 @@ Register a Kryptonian
 ```json
 {
   "email": "example@krypton.com",
-  "otp": "123456"
 }
 ```
 

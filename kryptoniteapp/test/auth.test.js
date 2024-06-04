@@ -9,7 +9,7 @@ let mongoServer;
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const uri = mongoServer.getUri();
-  await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  await mongoose.connect(uri);
 });
 
 afterAll(async () => {
@@ -30,7 +30,7 @@ describe('Auth Endpoints', () => {
   });
 
   it('should confirm email with OTP', async () => {
-    const user = await User.findOne({ email: 'test@krypton.com' });
+    const user = await User.findOne({ email: 'ejiofor.obieze@gmail.com' });
     user.otp = '158466'; // was set maually
     await user.save();
 
